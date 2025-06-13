@@ -1,77 +1,255 @@
-/* style.css */
+/* Reset and basics */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Share Tech Mono', monospace;
   color: #00ff00;
-  box-sizing: border-box;
 }
 
 body {
   background: #000;
   overflow-x: hidden;
+  padding-bottom: 50px; /* prevent content hiding if fixed footer added later */
 }
 
+/* NAVIGATION */
 nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   background: #111;
-  padding: 1em;
   position: fixed;
-  width: 100%;
   top: 0;
+  width: 100%;
   z-index: 100;
+  box-shadow: 0 0 10px #0f0;
 }
 
-nav a {
+.nav-center {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  color: #0f0;
+  text-decoration: none;
+  font-weight: bold;
+  user-select: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
   color: #00ff00;
   text-decoration: none;
-  font-size: 1.2em;
-  transition: 0.3s;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: #0f0;
 }
 
+/* Hamburger button */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  width: 30px;
+  height: 3px;
+  background: #0f0;
+  border-radius: 2px;
+  transition: all 0.3s linear;
+}
+
+/* INTRO section */
+.intro {
+  min-height: 90vh;
+  padding: 140px 2em 4em;
+  background: #000;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whoami-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111;
+  border: 2px solid #0f0;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #0f0;
+  gap: 40px; /* Adds space between image and text */
+}
+
+.whoami-text {
+  max-width: 500px;
+  text-align: left;
+  white-space: normal;
+  overflow: hidden;
+  padding-right: 20px;
+  border-right: 2px solid #0f0;
+}
+
+.whoami-text h1 {
+  font-size: clamp(2rem, 3vw + 1rem, 3rem);
+  margin-bottom: 10px;
+  color: #00ff00;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.whoami-text p {
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.3rem);
+  color: #00ff00;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.whoami-image {
+  flex: 0 0 150px;
+  max-width: 150px;
+}
+
+/* Default (mobile-first): image centered */
+.whoami-image img {
+  width: 330px;
+  height: 500px;
+  border: 2px solid #0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #0f0;
+  animation: floatAnim 3s ease-in-out infinite alternate;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Shift image left ONLY on larger screens */
+@media (min-width: 1025px) {
+  .whoami-image img {
+    margin-left: -183px;
+  }
+}
+
+/* Tablet (medium screens) */
+@media (max-width: 1024px) {
+  .whoami-box {
+    flex-direction: column-reverse;
+    gap: 30px;
+    padding: 20px;
+    width: 95%;
+  }
+
+  .whoami-text {
+    font-size: 2rem;
+    border-right: none;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .whoami-image {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .whoami-image img {
+    width: 250px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: fixed;
+    top: 60px; /* height of nav */
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+    border-left: 2px solid #0f0;
+    box-shadow: -3px 0 15px #0f0;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+
+  /* Show hamburger */
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 400px) {
+  .whoami-image img {
+    width: 180px;
+    height: auto;
+  }
+
+  .whoami-text {
+    font-size: 1.6rem;
+  }
+}
+
+
+
+
+
+/* Sections styling */
 section {
-  padding: 100px 40px;
-  min-height: 100vh;
-  border-bottom: 1px solid #0f0;
+  max-width: 1100px;
+  margin: 0 auto 3em;
+  padding: 2em 1.5em;
+  border-bottom: 3px solid #0f0; /* stronger footer line */
+  box-shadow: 0 2px 6px #0f0; /* subtle glow below the line */
 }
 
 h1, h2, h3, p {
   margin-bottom: 1em;
 }
 
-.intro {
-  background: url("https://i.ibb.co/4RHzMQM/hacker-bg.gif") no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.intro h1 {
-  font-size: 3em;
-  text-shadow: 0 0 20px #0f0;
-}
-
+/* Terminal style */
 .terminal {
   background-color: #111;
   padding: 20px;
   border: 2px solid #0f0;
   border-radius: 5px;
+  font-size: 1.1rem;
 }
 
-.contact-form input, .contact-form textarea {
+/* Contact form */
+.contact-form input, 
+.contact-form textarea {
   background: #000;
   border: 1px solid #0f0;
   color: #0f0;
   padding: 10px;
   margin-bottom: 10px;
   width: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  resize: vertical;
 }
 
 .contact-form button {
@@ -80,4 +258,32 @@ h1, h2, h3, p {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-family: 'Share Tech Mono', monospace;
+  transition: background-color 0.3s ease;
 }
+
+.contact-form button:hover {
+  background-color: #0c0;
+}
+
+/* Animations */
+@keyframes floatAnim {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
+}
+
+.social-links a {
+  margin-right: 20px; /* white space between icons */
+  display: inline-block;
+}
+
+.social-links a:last-child {
+  margin-right: 0; /* no extra space after last icon */
+}
+
