@@ -55,3 +55,24 @@ window.addEventListener('DOMContentLoaded', () => {
     showSection(hash);
   }
 });
+
+
+// audio in the social links
+const audio = document.getElementById('hacker-audio');
+const audioIcon = document.getElementById('audio-icon');
+const audioToggle = document.querySelector('.audio-toggle');
+
+if (audioToggle && audio && audioIcon) {
+  audioToggle.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => {
+        audioIcon.src = "https://cdn4.vectorstock.com/i/1000x1000/76/28/red-pause-button-icon-vector-42577628.jpg"; // sound on
+      }).catch((e) => {
+        console.error('Play failed:', e);
+      });
+    } else {
+      audio.pause();
+      audioIcon.src = "https://thumbs.dreamstime.com/b/volume-speaker-icon-glassy-green-round-button-illustration-isolated-161326995.jpg"; // sound off
+    }
+  });
+}
